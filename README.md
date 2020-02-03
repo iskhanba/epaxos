@@ -1,3 +1,46 @@
+# NOTE:iskhanba: Tested OK on WSL Ubuntu16, Go 1.8
+Default Golang version for Ubuntu16 distribution is Go 1.6 which doesn't work out of the box.
+Also won't work for Go 1.13 - compile error. So stick with Go 1.8.
+```
+# Follow https://github.com/golang/go/wiki/Ubuntu to install older version of Go
+$ sudo add-apt-repository ppa:gophers/archive
+$ sudo apt-get update
+$ sudo apt-get install golang-1.8-go
+
+# Install dep https://golang.github.io/dep/docs/installation.html
+$ curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+
+# Check dep installation
+$ which dep
+$ dep version
+dep:
+ version     : v0.5.4
+ build date  : 2019-07-01
+ git hash    : 1f7c19e
+ go version  : go1.12.6
+ go compiler : gc
+ platform    : linux/amd64
+ features    : ImportDuringSolve=false
+
+
+# Set environment, GOPATH etc ...
+# clone and cd to this repo, and run
+$ dep ensure -v
+
+# Run test
+$ make test
+=== RUN   TestOnRequestIncrementInstanceNumber
+--- PASS: TestOnRequestIncrementInstanceNumber (0.00s)
+=== RUN   TestOnRequestIncrementSequenceNumber
+--- PASS: TestOnRequestIncrementSequenceNumber (0.00s)
+=== RUN   TestOnRequestDependencies
+--- PASS: TestOnRequestDependencies (0.00s)
+...
+...
+
+```
+
+
 # Egalitarian Paxos
 
 _A pluggable implementation of the Egalitarian Paxos Consensus Protocol_
